@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import API_KEY from "../api.config";
+import MemoryForm from "./memoryForm";
 
 let NewPage = (props) => {
   // state for URL choice
@@ -57,18 +58,7 @@ let NewPage = (props) => {
             })
           : null}
       </div>
-      <div>
-        {chosen !== null ? (
-          <div>
-            <h1>{chosen.snippet.title}</h1>
-            <img
-              src={chosen.snippet.thumbnails.medium.url}
-              alt="video thumbnail"
-            />
-            <input class="bg-orange-200 border-4 border-solid rounded-lg border-gray-600 w-1/2 h-16 text-xl text-center"></input>
-          </div>
-        ) : null}
-      </div>
+      <div>{chosen !== null ? <MemoryForm chosen={chosen} /> : null}</div>
     </>
   );
 };
