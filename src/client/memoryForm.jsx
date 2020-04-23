@@ -8,7 +8,7 @@ let MemoryForm = ({ chosen }) => {
 
   let handleSubmit = () => {
     // get memory, date, and involved, and any chosen data you need
-    let userName = localStorage.get("id");
+    let userName = localStorage.getItem("id");
     let sharedWithUsers = involved !== "" ? involved.split(",") : "";
     let url = chosen.id.videoId;
     let sharedBy = userName;
