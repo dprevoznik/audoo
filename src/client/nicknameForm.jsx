@@ -17,10 +17,9 @@ let NicknameForm = (props) => {
         .then(({ data }) => {
           // if it isn't
           if (!data) {
-            // setNickname(choice);
-            setNickname(choice); // ???START HERE
+            setNickname(choice);
+            localStorage.setItem("id", choice);
           } else {
-            // set choice equal to name is taken
             setChoice("Name Taken");
           }
         })

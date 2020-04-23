@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import NicknameForm from "./nicknameForm";
+import Navbar from "./navbar";
+import Main from "./main";
 
 function App() {
   let [nickname, setNickname] = useState(localStorage.getItem("id"));
-  let [searchTerm, setSearchTerm] = useState();
+  let [page, setPage] = useState("New");
   return (
     <div>
       {nickname === null ? (
-        <NicknameForm setNickname={setNickname}/>
+        <NicknameForm setNickname={setNickname} />
       ) : (
-        <div>
-          <h1 class="text-6xl">{`Welcome Back ${nickname}!`}</h1>
-        </div>
+        <>
+          <Navbar nickname={nickname} setPage={setPage} />
+          <Main user={nickname} page={page} />
+        </>
       )}
     </div>
   );
