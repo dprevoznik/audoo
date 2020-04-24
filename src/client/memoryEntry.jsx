@@ -16,11 +16,11 @@ let MemoryEntry = ({ audoo }) => {
             allowFullScreen
           ></iframe>
         </div>
-        <div class="text-xl text-gray-800 bg-green-300 flex flex-col text-left w-full rounded-r-lg overflow-y-auto">
-          <div class="bg-blue-400">
-            <span class="font-bold text-orange-700 ml-4">{audoo.date}</span>
+        <div class="text-xl text-gray-900 bg-green-300 flex flex-col text-left w-full rounded-r-lg overflow-y-auto">
+          <div class="bg-blue-700">
+            <span class="font-bold text-white ml-4">{audoo.date}</span>
           </div>
-          <p class="font-bold text-gray-800 m-2 ml-4">{audoo.memory}</p>
+          <p class="font-bold text-gray-900 m-2 ml-4">{audoo.memory}</p>
         </div>
       </div>
     </div>

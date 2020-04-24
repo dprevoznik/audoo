@@ -3,7 +3,7 @@ import axios from "axios";
 import API_KEY from "../api.config";
 import MemoryForm from "./memoryForm";
 
-let NewPage = ({ setPage }) => {
+let NewPage = ({ setPage, user }) => {
   // state for URL choice
   let [chosen, setChosen] = useState(null);
   let [searchTerm, setSearchTerm] = useState("");
@@ -36,7 +36,8 @@ let NewPage = ({ setPage }) => {
         value={searchTerm}
         onChange={handleSearchTermChange}
         type="search"
-        class="bg-orange-200 border-4 border-solid rounded-lg border-gray-600 w-1/2 h-16 text-xl text-center mt-16"
+        class="bg-green-300 border-4 border-solid rounded-lg border-gray-600 w-1/2 h-16 text-xl text-center mt-16"
+        placeholder={`Let's Record A Memory ${user}!`}
       ></input>
       {searchResults.length > 0 && chosen === null
         ? searchResults.map((item) => {

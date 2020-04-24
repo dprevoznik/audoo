@@ -6,7 +6,7 @@ import SharedList from "./sharedList.jsx";
 let Main = ({ user, page, setPage }) => {
   let displayed;
   if (page === "New") {
-    displayed = <NewPage setPage={setPage} />;
+    displayed = <NewPage setPage={setPage} user={user} />;
   } else if (page === "Audoos") {
     displayed = <MemoriesList />;
   } else {
