@@ -2,7 +2,7 @@ var Promise = require("bluebird");
 var mongoose = Promise.promisifyAll(require("mongoose"));
 // var example = require("./example.js");
 
-mongoose.connect("mongodb://18.188.108.40:27017/audoo", {
+mongoose.connect("mongodb://localhost:27017/audoo", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
