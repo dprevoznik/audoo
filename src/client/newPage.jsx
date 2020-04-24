@@ -3,7 +3,7 @@ import axios from "axios";
 import API_KEY from "../api.config";
 import MemoryForm from "./memoryForm";
 
-let NewPage = (props) => {
+let NewPage = ({ setPage }) => {
   // state for URL choice
   let [chosen, setChosen] = useState(null);
   let [searchTerm, setSearchTerm] = useState("");
@@ -31,35 +31,31 @@ let NewPage = (props) => {
     }
   }, [searchTerm]);
   return (
-    <>
-      <div class="flex justify-center mt-16">
-        <input
-          value={searchTerm}
-          onChange={handleSearchTermChange}
-          type="search"
-          class="bg-orange-200 border-4 border-solid rounded-lg border-gray-600 w-1/2 h-16 text-xl text-center"
-        ></input>
-      </div>
-      <div>
-        {searchResults.length > 0 && chosen === null
-          ? searchResults.map((item) => {
-              return (
-                <div
-                  onClick={() => {
-                    setChosen(item);
-                  }}
-                  class="flex justify-center"
-                >
-                  <span class="hover:text-blue-900 hover:bg-red-300 border-4 border-solid border-gray-600 p-2 w-1/2 text-xl">
-                    {item.snippet.title}
-                  </span>
-                </div>
-              );
-            })
-          : null}
-      </div>
-      <div>{chosen !== null ? <MemoryForm chosen={chosen} /> : null}</div>
-    </>
+    <div class="flex flex-col items-center text-center w-full">
+      <input
+        value={searchTerm}
+        onChange={handleSearchTermChange}
+        type="search"
+        class="bg-orange-200 border-4 border-solid rounded-lg border-gray-600 w-1/2 h-16 text-xl text-center mt-16"
+      ></input>
+      {searchResults.length > 0 && chosen === null
+        ? searchResults.map((item) => {
+            return (
+              <div
+                onClick={() => {
+                  setChosen(item);
+                }}
+                class="hover:text-blue-900 hover:bg-red-300 border-4 border-solid border-gray-600 p-2 w-1/2 text-xl"
+              >
+                {item.snippet.title}
+              </div>
+            );
+          })
+        : null}
+        {chosen !== null ? (
+          <MemoryForm setPage={setPage} chosen={chosen} />
+        ) : null}
+    </div>
   );
 };
 // FORM after URL is chosen

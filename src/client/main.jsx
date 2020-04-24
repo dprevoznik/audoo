@@ -1,14 +1,16 @@
 import React from "react";
 import NewPage from "./newPage";
+import MemoriesList from "./memoriesList.jsx";
+import SharedList from "./sharedList.jsx";
 
-let Main = ({ user, page }) => {
+let Main = ({ user, page, setPage }) => {
   let displayed;
   if (page === "New") {
-    displayed = <NewPage />;
+    displayed = <NewPage setPage={setPage} />;
   } else if (page === "Audoos") {
-    displayed = <h1>Audoos</h1>;
+    displayed = <MemoriesList />;
   } else {
-    displayed = <h1>Shared</h1>;
+    displayed = <SharedList />;
   }
   return displayed;
 };

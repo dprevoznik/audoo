@@ -13,7 +13,7 @@ function App() {
       ) : (
         <>
           <Navbar nickname={nickname} setPage={setPage} />
-          <Main user={nickname} page={page} />
+          <Main user={nickname} page={page} setPage={setPage}/>
         </>
       )}
     </div>
