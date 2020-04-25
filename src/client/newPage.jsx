@@ -36,7 +36,7 @@ let NewPage = ({ setPage, user }) => {
         value={searchTerm}
         onChange={handleSearchTermChange}
         type="search"
-        class="bg-green-300 border-4 border-solid rounded-lg border-gray-600 w-1/2 h-16 text-xl text-center mt-16"
+        class="outline-none border-b-2 border-t-2 border-solid rounded-lg border-gray-600 w-1/2 h-16 text-xl text-center mt-16"
         placeholder={`Let's Record A Memory ${user}!`}
       ></input>
       {searchResults.length > 0 && chosen === null
@@ -46,7 +46,7 @@ let NewPage = ({ setPage, user }) => {
                 onClick={() => {
                   setChosen(item);
                 }}
-                class="hover:text-blue-900 hover:bg-red-300 border-4 border-solid border-gray-600 p-2 w-1/2 text-xl"
+                class="hover:bg-red-300 border-2 border-solid border-gray-600 p-2 w-1/2 text-lg"
               >
                 {item.snippet.title}
               </div>

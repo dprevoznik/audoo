@@ -12,7 +12,7 @@ function App() {
         <NicknameForm setNickname={setNickname} />
       ) : (
         <>
-          <Navbar nickname={nickname} setPage={setPage} />
+          <Navbar page={page} nickname={nickname} setPage={setPage} />
           <Main user={nickname} page={page} setPage={setPage}/>
         </>
       )}

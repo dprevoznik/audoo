@@ -1,18 +1,17 @@
 import React from "react";
 
 let Navbar = (props) => {
-  let { nickname, setPage } = props;
+  let { page, setPage } = props;
   return (
-    <div class="bg-teal-300">
-      {/* <div class="text-center">
-        <h1 class="text-6xl">{`Welcome ${nickname}!`}</h1>
-      </div> */}
-      <div class="flex justify-center border-gray-800 border-b-8 border-t-8 border-solid">
+    <div class="border-gray-600 border-solid border-b-2 mx-32">
+      <div class="flex justify-center">
         <button
           onClick={() => {
             setPage("New");
           }}
-          class="text-4xl mx-20 bg-yellow-300 border-yellow-300 border-b-4 border-t-4 border-r-4 border-l-4 hover:bg-gray-400 focus:bg-gray-500 uppercase px-10"
+          class={`focus:outline-none text-5xl hover:text-orange-500 uppercase px-10 ${
+            page === "New" ? "text-orange-600" : ""
+          }`}
         >
           New
         </button>
@@ -20,7 +19,9 @@ let Navbar = (props) => {
           onClick={() => {
             setPage("Audoos");
           }}
-          class="text-4xl mx-20 bg-yellow-300 border-yellow-300 border-b-4 border-t-4 border-r-4 border-l-4 hover:bg-gray-400 focus:bg-gray-500 uppercase px-10"
+          class={`focus:outline-none text-5xl hover:text-orange-500 uppercase px-10 ${
+            page === "Audoos" ? "text-orange-600" : ""
+          }`}
         >
           Audoos
         </button>
@@ -28,7 +29,9 @@ let Navbar = (props) => {
           onClick={() => {
             setPage("Shared");
           }}
-          class="text-4xl mx-20 bg-yellow-300 border-yellow-300 border-b-4 border-t-4 border-r-4 border-l-4 hover:bg-gray-400 focus:bg-gray-500 uppercase px-10"
+          class={`focus:outline-none text-5xl hover:text-orange-500 uppercase px-10 ${
+            page === "Shared" ? "text-orange-600" : ""
+          }`}
         >
           Shared
         </button>
