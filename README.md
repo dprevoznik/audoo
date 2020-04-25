@@ -1,6 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Have you ever heard a song that instantly brought you back to some distant memory? Save that thought with Audoo! And while you're at it, tag all of your friends that were involved. That way they can cherish the memory as well.
+
+## Link
+Live Website at http://18.188.108.40/
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
