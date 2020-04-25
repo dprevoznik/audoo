@@ -8,7 +8,7 @@ let SharedEntry = ({ share }) => {
           <iframe
             class="rounded-l-full"
             allowTransparency
-            style={{ position: "relative", height: "20vh", width: "25vw" }}
+            style={{ position: "relative", height: "100%", width: "25vw" }}
             title={share.memory + share.date}
             src={`https://www.youtube.com/embed/${share.url}`}
             frameborder="0"
@@ -16,8 +16,8 @@ let SharedEntry = ({ share }) => {
             allowFullScreen
           ></iframe>
         </div>
-        <div class="text-xl text-gray-900 bg-green-300 flex flex-col text-left w-full rounded-r-lg overflow-y-auto">
-          <div class="bg-blue-700">
+        <div class="text-xl text-gray-900 flex flex-col text-left w-full rounded-r-lg overflow-y-auto border-b-2 border-r-2 border-gray-600">
+          <div class="bg-gray-600 border-r-2 border-gray-600">
             <span class="font-bold text-white ml-4 inline-flex">{share.date}</span>
             <span class="text-right object-right font-bold text-gray-900">{` | From ${share.sharedBy}`}</span>
           </div>
