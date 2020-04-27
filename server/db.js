@@ -1,10 +1,12 @@
 var Promise = require("bluebird");
 var mongoose = Promise.promisifyAll(require("mongoose"));
-// var example = require("./example.js");
+const { DB_USERNAME, DB_PASSWORD } = require("./db.config.js");
 
 mongoose.connect("mongodb://18.188.108.40:27017/audoo", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  user: DB_USERNAME,
+  pass: DB_PASSWORD,
 });
 
 var db = mongoose.connection;

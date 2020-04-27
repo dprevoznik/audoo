@@ -21,7 +21,7 @@ router.get("/audoos/:nickname", (req, res) => {
 
 router.get("/shared/:nickname", (req, res) => {
   let { nickname } = req.params;
-  Audoos.find({ userName: nickname, sharedBy: {"$ne": nickname} })
+  Audoos.find({ userName: nickname, sharedBy: { $ne: nickname } })
     .then((audoos) => res.send(audoos))
     .catch((err) => res.send(500));
 });
@@ -56,6 +56,17 @@ router.post("/memory", (req, res) => {
       console.log("Error creating new memory: ", err);
       res.send(500);
     });
+});
+
+// **************************** //
+// ********** PUT ************* //
+// **************************** //
+
+router.put("/delete/:id", (req, res) => {
+  let { id } = req.params;
+  Audoos.findByIdAndDeleteAsync({ _id: id })
+    .then(() => res.sendStatus(204))
+    .catch((err) => res.sendStatus(500));
 });
 
 module.exports = router;
