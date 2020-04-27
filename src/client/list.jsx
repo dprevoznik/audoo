@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from "react";
-import MemoryEntry from "./memoryEntry.jsx";
+import ListEntry from "./listEntry.jsx";
 import axios from "axios";
 import "./scroller.css";
+import fetchAudoos from "./fetchAudoos.js";
 
-let MemoriesList = () => {
+let List = ({ page }) => {
   // use state to get data
   let [audoos, setAudoos] = useState([]);
   // use effect and fetch the data needed for this area
   useEffect(() => {
-    let nickname = localStorage.getItem("id");
-    axios
-      .get(`/service/audoos/${nickname}`)
-      .then(({ data }) => setAudoos(data))
-      .catch((err) => console.log("err fetching audoos: ", err));
-  }, []);
-  // for each return a formatted memory
+    fetchAudoos(page, setAudoos);
+  }, [page]);
+
   return (
     <div>
       <div class="scroller flex flex-col items-center overflow-y-scroll h-screen">
         {audoos.length > 0
           ? audoos.map((audoo) => {
-              return <MemoryEntry audoo={audoo} />;
+              return (
+                <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} />
+              );
             })
           : null}
       </div>
@@ -28,4 +27,4 @@ let MemoriesList = () => {
   );
 };
 
-export default MemoriesList;
+export default List;
