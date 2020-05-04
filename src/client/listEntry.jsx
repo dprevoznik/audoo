@@ -10,14 +10,21 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
       .catch((err) => console.log("Err deleting post: ", err));
   };
 
+  const decideMoodColor = (emotion) => {
+    if (emotion === "") return "";
+    if (emotion === "smiley") return "bg-green-200";
+    if (emotion === "neutral") return "";
+    if (emotion === "frowning") return "bg-red-200";
+  };
+
   return (
-    <div class="m-2 p-2 w-3/5">
+    <div class="my-6 mx-10 w-full">
       <div class="flex flex-row">
         <div>
           <iframe
             class="rounded-l-full"
             allowTransparency
-            style={{ position: "relative", height: "100%", width: "25vw" }}
+            style={{ position: "relative", height: "100%", width: "20vw" }}
             title={audoo.memory + audoo.date}
             src={`https://www.youtube.com/embed/${audoo.url}`}
             frameborder="0"
@@ -25,8 +32,10 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
             allowFullScreen
           ></iframe>
         </div>
-        <div class="text-xl text-gray-900 flex flex-col text-left w-full rounded-r-lg overflow-y-auto border-t-2 border-r-2 border-b-2 border-gray-600">
-          <div class="flex justify-between border-gray-600 border-b-2">
+        <div
+          class={`text-xl text-gray-900 flex flex-col text-left w-full rounded-r-lg overflow-y-auto border-t-2 border-r-2 border-b-2 border-gray-600`}
+        >
+          <div class={`flex justify-between border-gray-600 border-b-2  ${page === "Audoos" ? decideMoodColor(audoo.emoji) : ""}`}>
             <div>
               <span class="font-bold ml-4">{audoo.date}</span>
               <span class="font-bold text-gray-900">
