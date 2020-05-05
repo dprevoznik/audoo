@@ -12,13 +12,31 @@ let List = ({ page }) => {
     fetchAudoos(page, setAudoos);
   }, [page]);
 
+  let columnA = [];
+  let columnB = [];
+
+  audoos.forEach((audoo, idx) => {
+    if (idx % 2 === 0) {
+      columnA.push(
+        <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} />
+      );
+    } else {
+      columnB.push(
+        <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} />
+      );
+    }
+  });
+
   return (
     <div>
-      <div class="scroller flex flex-col items-center overflow-y-scroll h-screen">
+      <div class="scroller flex flex-col items-center overflow-y-scroll w-screen">
         {audoos.length > 0
-          ? audoos.map((audoo) => {
+          ? columnA.map((memory, idx) => {
               return (
-                <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} />
+                <div class="flex flex-row w-3/5">
+                  {memory}
+                  {columnB[idx] === undefined ? <div class="my-6 mx-10 w-1/2"></div> : columnB[idx]}
+                </div>
               );
             })
           : null}

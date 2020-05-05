@@ -32,12 +32,10 @@ var audoosSchema = new mongoose.Schema({
   sharedWithUsers: [String],
   sharedBy: String,
   shared: Boolean,
+  emoji: String
 });
 
 var Audoos = db.model("Audoos", audoosSchema);
-
-// Nickname.createAsync({ userName: "Dan222" });
-// Audoos.createAsync(example);
 
 module.exports.Nickname = Nickname;
 module.exports.Audoos = Audoos;

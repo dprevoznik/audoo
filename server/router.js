@@ -14,7 +14,9 @@ router.use(function timeLog(req, res, next) {
 
 router.get("/audoos/:nickname", (req, res) => {
   let { nickname } = req.params;
-  Audoos.find({ userName: nickname, sharedBy: nickname })
+  Audoos.findAsync({ userName: nickname, sharedBy: nickname }, null, {
+    sort: { date: -1 },
+  })
     .then((audoos) => res.send(audoos))
     .catch((err) => res.send(500));
 });
