@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import fetchAudoos from "./fetchAudoos.js";
 
@@ -17,25 +17,23 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
     if (emotion === "frowning") return "bg-red-200";
   };
 
+  let [hover, setHover] = useState(false);
+  const onHoverToggle = (e) => {
+    e.preventDefault();
+    setHover(!hover);
+  };
+
   return (
-    <div class="my-6 mx-10 w-full">
-      <div class="flex flex-row">
-        <div>
-          <iframe
-            class="rounded-l-full"
-            allowTransparency
-            style={{ position: "relative", height: "100%", width: "20vw" }}
-            title={audoo.memory + audoo.date}
-            src={`https://www.youtube.com/embed/${audoo.url}`}
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
+    <div class="my-6 mx-10 w-1/2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" onMouseEnter={onHoverToggle} onMouseLeave={onHoverToggle}>
+      <div class="flex flex-col">
         <div
-          class={`text-xl text-gray-900 flex flex-col text-left w-full rounded-r-lg overflow-y-auto border-t-2 border-r-2 border-b-2 border-gray-600`}
+          class={`text-xl text-gray-900 flex flex-col text-left w-full rounded-lg overflow-y-auto border-2 border-gray-600`}
         >
-          <div class={`flex justify-between border-gray-600 border-b-2  ${page === "Audoos" ? decideMoodColor(audoo.emoji) : ""}`}>
+          <div
+            class={`flex justify-between border-gray-600 border-b-2  ${
+              page === "Audoos" ? decideMoodColor(audoo.emoji) : ""
+            }`}
+          >
             <div>
               <span class="font-bold ml-4">{audoo.date}</span>
               <span class="font-bold text-gray-900">
@@ -49,7 +47,23 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
               <i class="fas fa-times-circle fa-xs text-red-600 hover:text-red-500"></i>
             </button>
           </div>
-          <p class="font-bold text-gray-900 m-2 ml-4">{audoo.memory}</p>
+          <div class="border-b-2 border-gray-600">
+            <iframe
+              class=""
+              allowTransparency
+              style={{ position: "relative", height: "100%", width: "100%" }}
+              title={audoo.memory + audoo.date}
+              src={`https://www.youtube.com/embed/${audoo.url}`}
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <div>
+            {hover === true ? (
+              <p class="text-sm font-bold text-gray-900 m-2 ml-4">{audoo.memory}</p>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

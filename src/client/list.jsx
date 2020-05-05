@@ -29,13 +29,13 @@ let List = ({ page }) => {
 
   return (
     <div>
-      <div class="scroller flex flex-col items-center overflow-y-scroll h-screen w-screen">
+      <div class="scroller flex flex-col items-center overflow-y-scroll w-screen">
         {audoos.length > 0
           ? columnA.map((memory, idx) => {
               return (
-                <div class="flex flex-row w-screen">
+                <div class="flex flex-row w-3/5">
                   {memory}
-                  {columnB[idx] === undefined ? null : columnB[idx]}
+                  {columnB[idx] === undefined ? <div class="my-6 mx-10 w-1/2"></div> : columnB[idx]}
                 </div>
               );
             })
