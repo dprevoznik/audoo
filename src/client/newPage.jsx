@@ -31,31 +31,47 @@ let NewPage = ({ setPage, user }) => {
     }
   }, [searchTerm]);
   return (
-    <div class="flex flex-col items-center text-center w-full">
-      <input
-        value={searchTerm}
-        onChange={handleSearchTermChange}
-        type="search"
-        class="outline-none border-b-2 border-t-2 border-solid rounded-lg border-gray-600 w-1/2 h-16 text-xl text-center mt-16"
-        placeholder={`Let's Record A Memory ${user}!`}
-      ></input>
+    <div class="flex flex-col items-center text-center w-full h-screen justify-center">
+      <div class="w-1/2 border-gray-600 border-2 rounded">
+        <input
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          type="search"
+          class="outline-none h-16 text-xl text-center w-full"
+          placeholder={`Let's Record A Memory ${user}!`}
+        ></input>
+      </div>
       {searchResults.length > 0 && chosen === null
-        ? searchResults.map((item) => {
+        ? searchResults.map((item, idx) => {
             return (
               <div
                 onClick={() => {
                   setChosen(item);
                 }}
-                class="hover:bg-red-300 border-2 border-solid border-gray-600 p-2 w-1/2 text-lg"
+                class={`flex flex-row hover:bg-gray-200 border-solid border-r-2 border-l-2 border-gray-600 p-2 w-1/2 text-m ${
+                  idx === 0 ? "mt-2 rounded-t border-t-2" : ""
+                } ${
+                  idx === searchResults.length - 1 ? "rounded-b border-b-2" : ""
+                }`}
               >
-                {item.snippet.title}
+                <img
+                  class="rounded-full"
+                  style={{
+                    position: "relative",
+                    width: "10%",
+                    height: "100%",
+                  }}
+                  src={item.snippet.thumbnails.default.url}
+                  alt={`search result ${idx}`}
+                />
+                <p class="ml-2 pt-2">{item.snippet.title}</p>
               </div>
             );
           })
         : null}
-        {chosen !== null ? (
-          <MemoryForm setPage={setPage} chosen={chosen} />
-        ) : null}
+      {chosen !== null ? (
+        <MemoryForm setPage={setPage} chosen={chosen} />
+      ) : null}
     </div>
   );
 };

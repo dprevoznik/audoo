@@ -11,10 +11,10 @@ function App() {
       {nickname === null ? (
         <NicknameForm setNickname={setNickname} />
       ) : (
-        <>
+        <div class="flex flex-row">
           <Navbar page={page} nickname={nickname} setPage={setPage} />
           <Main user={nickname} page={page} setPage={setPage}/>
-        </>
+        </div>
       )}
     </div>
   );

@@ -11,7 +11,9 @@ let Main = ({ user, page, setPage }) => {
   } else {
     displayed = <List page={page} />;
   }
-  return displayed;
+  return (
+    <div class="overflow-y-scroll h-screen w-full">{displayed}</div>
+  );
 };
 
 export default Main;
