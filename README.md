@@ -1,8 +1,10 @@
 ## Description
 Have you ever heard a song that instantly brought you back to some distant memory? Save that thought with Audoo! And while you're at it, tag all of your friends that were involved. That way they can cherish the memory as well.
 
+![](http://g.recordit.co/l0Gt7Ge8qQ.gif)
+
 ## Link
-Live at http://18.188.108.40/
+Live at https://bit.ly/audoo-it
 
 ## Available Scripts
 
