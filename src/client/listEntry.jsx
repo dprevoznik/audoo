@@ -24,10 +24,14 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
   };
 
   return (
-    <div class="my-6 mx-10 w-1/2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" onMouseEnter={onHoverToggle} onMouseLeave={onHoverToggle}>
+    <div
+      class="my-6 mx-10 w-1/2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+      onMouseEnter={onHoverToggle}
+      onMouseLeave={onHoverToggle}
+    >
       <div class="flex flex-col">
         <div
-          class={`text-xl text-gray-900 flex flex-col text-left w-full rounded-lg overflow-y-auto border-2 border-gray-600`}
+          class={`text-lg text-gray-900 flex flex-col text-left w-full rounded-lg overflow-y-auto border-2 border-gray-600`}
         >
           <div
             class={`flex justify-between border-gray-600 border-b-2  ${
@@ -47,7 +51,7 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
               <i class="fas fa-times-circle fa-xs text-red-600 hover:text-red-500"></i>
             </button>
           </div>
-          <div class="border-b-2 border-gray-600">
+          <div class="">
             <iframe
               class=""
               allowTransparency
@@ -59,11 +63,13 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
               allowFullScreen
             ></iframe>
           </div>
-          <div>
-            {hover === true ? (
-              <p class="text-sm font-bold text-gray-900 m-2 ml-4">{audoo.memory}</p>
-            ) : null}
-          </div>
+          {hover === true ? (
+            <div class="border-gray-600 border-t-2">
+              <p class="text-sm font-bold text-gray-900 m-2 ml-4">
+                {audoo.memory}
+              </p>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

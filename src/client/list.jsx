@@ -29,11 +29,11 @@ let List = ({ page }) => {
 
   return (
     <div>
-      <div class="scroller flex flex-col items-center overflow-y-scroll w-screen">
+      <div class="flex flex-col items-center w-full">
         {audoos.length > 0
           ? columnA.map((memory, idx) => {
               return (
-                <div class="flex flex-row w-3/5">
+                <div class="flex flex-row w-3/4">
                   {memory}
                   {columnB[idx] === undefined ? <div class="my-6 mx-10 w-1/2"></div> : columnB[idx]}
                 </div>
