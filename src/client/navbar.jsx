@@ -40,6 +40,30 @@ let Navbar = (props) => {
           Shared
         </button>
       </div>
+      <div>
+        <button
+          onClick={() => {
+            setPage("Feed");
+          }}
+          class={`focus:outline-none text-5xl hover:text-orange-500 uppercase ${
+            page === "Feed" ? "text-orange-600" : ""
+          }`}
+        >
+          Feed
+        </button>
+      </div>
+      <div>
+        <button
+          onClick={() => {
+            setPage("Stats");
+          }}
+          class={`focus:outline-none text-5xl hover:text-orange-500 uppercase ${
+            page === "Stats" ? "text-orange-600" : ""
+          }`}
+        >
+          Stats
+        </button>
+      </div>
     </div>
   );
 };

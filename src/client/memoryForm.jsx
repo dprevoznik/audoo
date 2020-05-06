@@ -16,6 +16,8 @@ let MemoryForm = ({ chosen, setPage }) => {
     let sharedBy = userName;
     let shared = sharedWithUsers === "" ? false : true;
     let emoji = feeling === null ? "" : feeling;
+    let truthy = false;
+    let created = new Date();
     // make axios request to post that data into Audoos collection
     axios
       .post("/service/memory", {
@@ -27,6 +29,8 @@ let MemoryForm = ({ chosen, setPage }) => {
         sharedBy,
         shared,
         emoji,
+        public: truthy,
+        created
       })
       .then(() => setPage("Audoos"))
       .catch((err) => console.log("err posting audoo: ", err));

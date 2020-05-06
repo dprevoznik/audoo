@@ -32,7 +32,9 @@ var audoosSchema = new mongoose.Schema({
   sharedWithUsers: [String],
   sharedBy: String,
   shared: Boolean,
-  emoji: String
+  emoji: String,
+  public: Boolean,
+  created: String
 });
 
 var Audoos = db.model("Audoos", audoosSchema);

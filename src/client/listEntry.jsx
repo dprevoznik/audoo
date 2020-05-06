@@ -18,9 +18,24 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
   };
 
   let [hover, setHover] = useState(false);
+  let [innerHover, setInnerHover] = useState(false);
   const onHoverToggle = (e) => {
     e.preventDefault();
     setHover(!hover);
+  };
+
+  const onInnerHoverToggle = (e) => {
+    e.preventDefault();
+    setInnerHover(!innerHover);
+  };
+
+  let [truthy, setTruthy] = useState(audoo.public);
+  const onPublicToggle = () => {
+    axios
+      .put(`/service/public/${audoo._id}/${!truthy}`)
+      // .then(() => fetchAudoos(page, setAudoos)) <-- I will always be on Audoo page. I do not need to update my list now.
+      .catch((err) => console.log("Error updating public status: ", err));
+    setTruthy(!truthy);
   };
 
   return (
@@ -41,7 +56,9 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
             <div>
               <span class="font-bold ml-4">{audoo.date}</span>
               <span class="font-bold text-gray-900">
-                {page === "Shared" ? ` | From ${audoo.sharedBy}` : null}
+                {page === "Shared" || page === "Feed"
+                  ? ` | ${audoo.sharedBy}`
+                  : null}
               </span>
             </div>
             <button
@@ -64,10 +81,24 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
             ></iframe>
           </div>
           {hover === true ? (
-            <div class="border-gray-600 border-t-2">
+            <div
+              onMouseEnter={onInnerHoverToggle}
+              onMouseLeave={onInnerHoverToggle}
+              class="border-gray-600 border-t-2 flex flex-col"
+            >
               <p class="text-sm font-bold text-gray-900 m-2 ml-4">
                 {audoo.memory}
               </p>
+              {page === "Audoos" && innerHover === true ? (
+                <button
+                  class={`text-xs p-1 focus:outline-none border-gray-600 border-t ${
+                    truthy === true ? "bg-blue-600 hover:font-bold" : "bg-gray-300 hover:font-bold"
+                  }`}
+                  onClick={onPublicToggle}
+                >
+                  {truthy === true ? "Public" : "Private"}
+                </button>
+              ) : null}
             </div>
           ) : null}
         </div>
