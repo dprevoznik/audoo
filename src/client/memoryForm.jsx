@@ -26,14 +26,14 @@ let MemoryForm = ({ chosen, setPage }) => {
         date,
         sharedBy,
         shared,
-        emoji
+        emoji,
       })
       .then(() => setPage("Audoos"))
       .catch((err) => console.log("err posting audoo: ", err));
   };
 
   return (
-    <div class="flex flex-row bg-teal-200 text-left w-1/2 shadow-2xl pr-4 pl-4 pb-4 rounded-b">
+    <div class="flex flex-row text-left w-1/2 shadow-2xl pr-4 pl-4 pb-4 rounded-b border-solid border-gray-600 border-2 mt-2">
       <div class="flex flex-col w-2/5 text-lg text-left">
         <img
           class="rounded-lg mt-4"
@@ -50,7 +50,7 @@ let MemoryForm = ({ chosen, setPage }) => {
               setMemory(e.target.value);
             }}
             value={memory}
-            class="bg-orange-100 border-4 border-solid rounded-lg border-gray-600 text-xl font-serif outline-none"
+            class="border-2 border-solid rounded-lg border-gray-600 text-m font-serif outline-none pl-2"
           ></input>
         </div>
         <div class="flex flex-col w-full mb-2">
@@ -61,7 +61,7 @@ let MemoryForm = ({ chosen, setPage }) => {
               setDate(e.target.value);
             }}
             type="date"
-            class="bg-orange-100 border-4 border-solid rounded-lg border-gray-600 text-xl font-serif outline-none"
+            class="border-2 border-solid rounded-lg border-gray-600 text-m font-serif outline-none pl-2"
           ></input>
         </div>
         <div class="flex flex-col w-full mb-2">
@@ -71,38 +71,41 @@ let MemoryForm = ({ chosen, setPage }) => {
             onChange={(e) => {
               setInvolved(e.target.value);
             }}
-            class="bg-orange-100 border-4 border-solid rounded-lg border-gray-600 text-xl font-serif outline-none"
-            placeholder="Greg333,Casey12,Andrew444"
+            class="border-2 border-solid rounded-lg border-gray-600 text-m font-serif outline-none pl-2"
+            placeholder="Greg333,Case13,Dan222"
           ></input>
         </div>
         <div class="flex flex-col w-full mb-2">
-          <span class="font-bold font-serif">Overall Feeling Experienced:</span>
-          <div class="flex flex-row">
-            {allEmoji.map((emoji) => {
-              return (
-                <div class="mx-1">
-                  <input
-                    onClick={() => {
-                      setFeeling(emoji[0]);
-                    }}
-                    type="radio"
-                    id={emoji[0]}
-                    value={emoji[0]}
-                    name="feeling"
-                  />
-                  <label htmlFor={emoji[0]}>{emoji[1]}</label>
-                </div>
-              );
-            })}
+          <span class="font-bold font-serif">Feeling Experienced:</span>
+          <div class="flex flex-row justify-between items-center">
+            <div class="flex flex-row text-center">
+              {allEmoji.map((emoji) => {
+                return (
+                  <div class="mx-1">
+                    <input
+                      class="transform hover:scale-125 text-white"
+                      onClick={() => {
+                        setFeeling(emoji[0]);
+                      }}
+                      type="radio"
+                      id={emoji[0]}
+                      value={emoji[0]}
+                      name="feeling"
+                    />
+                    <label htmlFor={emoji[0]}>{emoji[1]}</label>
+                  </div>
+                );
+              })}
+            </div>
+            <button
+              onClick={handleSubmit}
+              type="button"
+              class="border-2 px-2 border-solid rounded-lg border-gray-600 h-8 text-center hover:bg-gray-600 hover:opacity-50 font-bold font-serif focus:outline-none"
+            >
+              Record
+            </button>
           </div>
         </div>
-        <button
-          onClick={handleSubmit}
-          type="button"
-          class="border-4 mt-2 border-solid rounded-lg border-gray-600 h-8 text-center w-1/4 hover:bg-gray-600 font-bold font-serif focus:outline-none"
-        >
-          Record
-        </button>
       </div>
     </div>
   );

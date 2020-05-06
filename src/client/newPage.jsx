@@ -41,34 +41,38 @@ let NewPage = ({ setPage, user }) => {
           placeholder={`Let's Record A Memory ${user}!`}
         ></input>
       </div>
-      {searchResults.length > 0 && chosen === null
-        ? searchResults.map((item, idx) => {
-            return (
-              <div
-                onClick={() => {
-                  setChosen(item);
-                }}
-                class={`flex flex-row hover:bg-gray-200 border-solid border-r-2 border-l-2 border-gray-600 p-2 w-1/2 text-m ${
-                  idx === 0 ? "mt-2 rounded-t border-t-2" : ""
-                } ${
-                  idx === searchResults.length - 1 ? "rounded-b border-b-2" : ""
-                }`}
-              >
-                <img
-                  class="rounded-full"
-                  style={{
-                    position: "relative",
-                    width: "10%",
-                    height: "100%",
+      <div class="w-1/2 shadow-2xl">
+        {searchResults.length > 0 && chosen === null
+          ? searchResults.map((item, idx) => {
+              return (
+                <div
+                  onClick={() => {
+                    setChosen(item);
                   }}
-                  src={item.snippet.thumbnails.default.url}
-                  alt={`search result ${idx}`}
-                />
-                <p class="ml-2 pt-2">{item.snippet.title}</p>
-              </div>
-            );
-          })
-        : null}
+                  class={`flex flex-row hover:bg-gray-200 border-solid border-r-2 border-l-2 border-gray-600 p-2 w-full text-m ${
+                    idx === 0 ? "mt-2 rounded-t border-t-2" : ""
+                  } ${
+                    idx === searchResults.length - 1
+                      ? "rounded-b border-b-2"
+                      : ""
+                  }`}
+                >
+                  <img
+                    class="rounded-full"
+                    style={{
+                      position: "relative",
+                      width: "10%",
+                      height: "100%",
+                    }}
+                    src={item.snippet.thumbnails.default.url}
+                    alt={`search result ${idx}`}
+                  />
+                  <p class="ml-2 pt-2">{item.snippet.title}</p>
+                </div>
+              );
+            })
+          : null}
+      </div>
       {chosen !== null ? (
         <MemoryForm setPage={setPage} chosen={chosen} />
       ) : null}
