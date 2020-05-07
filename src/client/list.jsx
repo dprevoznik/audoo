@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ListEntry from "./listEntry.jsx";
-import axios from "axios";
 import "./scroller.css";
 import fetchAudoos from "./fetchAudoos.js";
 
