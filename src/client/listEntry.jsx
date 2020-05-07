@@ -91,7 +91,7 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
               </p>
               {page === "Audoos" && innerHover === true ? (
                 <button
-                  class={`text-xs p-1 focus:outline-none border-gray-600 border-t ${
+                  class={`text-xs p-1 focus:outline-none border-gray-600 border-t transition ease-in-out duration-1000 ${
                     truthy === true ? "bg-blue-600 hover:font-bold" : "bg-gray-300 hover:font-bold"
                   }`}
                   onClick={onPublicToggle}
