@@ -9,22 +9,25 @@ var StatsPage = ({ page }) => {
 
   const width = 250;
   const height = 250;
-  const margin = { top: 20, bottom: 20, left: 20, right: 30 };
-  const svg = d3.select("svg");
+  const margin = { top: 20, bottom: 25, left: 30, right: 30 };
+  const fontSize = 30;
+  const svg = d3.select("#graphCount");
   svg.attr("transform", `translate(25, 25)`);
   var xScale = d3
-    .scaleBand()
-    .rangeRound([margin.left, width - margin.right], 10, 10)
-    .paddingInner(0)
-    .paddingOuter(0.5)
-    .align(0.5);
+    .scalePoint()
+    .range([margin.right, width - margin.right])
+    .padding(0.5);
   var yScale = d3.scaleLinear().range([height - margin.bottom, margin.top]);
   var yAxis = d3.axisRight().scale(yScale).ticks(3);
+  var yAxis2 = d3.axisLeft().scale(yScale).ticks(3);
   var xAxis = d3.axisBottom().scale(xScale);
+
   if (svg.select(".yAxis").node() === null) {
     svg.append("g").attr("class", "xAxis");
     svg.append("g").attr("class", "yAxis");
+    svg.append("g").attr("class", "yAxis2");
   }
+
   const updateSelected = (e) => {
     setSelected(e.target.value);
   };
@@ -57,8 +60,6 @@ var StatsPage = ({ page }) => {
     }
   }, [data]);
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     const t = d3.transition().duration(1000);
 
@@ -70,37 +71,60 @@ var StatsPage = ({ page }) => {
       .attr("transform", `translate(${width - margin.right}, 0)`)
       .transition(t)
       .call(yAxis);
+    svg
+      .select(".yAxis2")
+      .attr("transform", `translate(${margin.left}, 0)`)
+      .transition(t)
+      .call(yAxis2);
 
     let xDomain = counts.map((d) => d.key);
     xScale.domain(xDomain);
 
-    let colorScale = d3.scaleOrdinal(d3.schemeCategory10);
-    let circles = svg.selectAll("circle").data(counts, (d) => d.key);
+    svg
+      .select(".xAxis")
+      .attr("transform", `translate(0, ${height - margin.bottom})`)
+      .transition(t)
+      .call(xAxis);
 
-    circles.exit().transition(t).attr("r", 0).remove();
-    let enter = circles
+    let text = svg.selectAll(".graphData").data(counts, (d) => d.key);
+    text.exit().transition(t).style("opacity", 0).remove();
+    let enter = text
       .enter()
-      .append("circle")
-      .attr("cx", (d) => xScale(d.key))
-      .attr("cy", (d) => yScale(d.count))
-      .style("opacity", 0.5);
+      .append("text")
+      .attr("class", "graphData")
+      .text((d) => {
+        if (d.key === "smiley") return "😊";
+        if (d.key === "neutral") return "😐";
+        if (d.key === "frowning") return "☹️";
+      })
+      .attr("y", (d) => yScale(d.count) + (0.5 * fontSize));
 
     enter
-      .merge(circles)
-      .attr("fill", (d) => colorScale(d.key))
+      .merge(text)
       .transition(t)
-      .attr("r", 10)
-      .attr("cx", (d) => xScale(d.key))
-      .attr("cy", (d) => yScale(d.count));
+      .attr("x", (d) => xScale(d.key) - 20)
+      .attr("y", (d) => yScale(d.count) + (0.5 * fontSize))
+      .attr("font-size", `${fontSize}px`);
+
+    d3.selectAll('.xAxis text')
+      .attr('font-weight', "bold")
+      .attr('font-size', "15px");
+    d3.selectAll('.yAxis text')
+      .attr('font-weight', "bold")
+      .attr('font-size', "15px");
+    d3.selectAll('.yAxis2 text')
+      .attr('font-weight', "bold")
+      .attr('font-size', "15px");
   }, [counts]);
 
   return (
-    <div>
-      <select onChange={updateSelected}>
+    <div className="flex-col">
+      <select onChange={updateSelected} className="">
         <option value="Audoos">Audoos</option>
         <option value="Shared">Shared</option>
         <option value="Feed">Feed</option>
       </select>
+      <svg id="graphCount" style={{ width: `${width}px`, height: `${height}px` }}></svg>
       <svg style={{ width: `${width}px`, height: `${height}px` }}></svg>
     </div>
   );
