@@ -15,7 +15,7 @@ let MemoryForm = ({ chosen, setPage }) => {
     let url = chosen.id.videoId;
     let sharedBy = userName;
     let shared = sharedWithUsers === "" ? false : true;
-    let emoji = feeling === null ? "" : feeling;
+    let emoji = feeling === null ? "neutral" : feeling;
     let truthy = false;
     let created = new Date();
     // make axios request to post that data into Audoos collection
