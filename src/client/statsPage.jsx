@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import fetchAudoos from "./fetchAudoos.js";
 import CountEmotionsGraph from "./countEmotionGraph.jsx";
-import CountEmotionsGraph2 from "./countEmotionGraph2.jsx";
+import EmotionTimeGraph from "./emotionTimeGraph.jsx";
 
 var StatsPage = ({ page }) => {
   var [data, setData] = useState([]);
@@ -16,15 +16,17 @@ var StatsPage = ({ page }) => {
   }, [selected]);
 
   return (
-    <div className="">
-      <select onChange={updateSelected} className="">
+    <div className="flex flex-col items-center">
+      <select onChange={updateSelected} className="w-full">
         <option value="Audoos">Audoos</option>
         <option value="Shared">Shared</option>
         <option value="Feed">Feed</option>
       </select>
-      <div className="flex flex-row">
+      <div className="mb-16">
         <CountEmotionsGraph data={data} />
-        <CountEmotionsGraph2 data={data} />
+      </div>
+      <div className="">
+        <EmotionTimeGraph data={data}/>
       </div>
     </div>
   );

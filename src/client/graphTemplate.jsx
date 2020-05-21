@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 
-var CountEmotionsGraph2 = ({ data }) => {
+var CountEmotionsGraph = ({ data }) => {
   var [counts, setCounts] = useState([]);
 
-  const width = 700;
+  const width = 250;
   const height = 250;
   const margin = { top: 20, bottom: 25, left: 30, right: 30 };
   const fontSize = 30;
-  const svg = d3.select("#graphCount2");
+  const svg = d3.select("#graphCount");
   svg.attr("transform", `translate(25, 25)`);
-  var xScale = d3.scaleLinear().range([margin.left, width - margin.right])
-  var yScale = d3
+  var xScale = d3
     .scalePoint()
-    .range([margin.left, height - margin.bottom])
+    .range([margin.right, width - margin.right])
     .padding(0.5);
-  var xAxis = d3.axisBottom().scale(xScale).ticks(3);
-  if (svg.select(".xAxis").node() === null) {
+  var yScale = d3.scaleLinear().range([height - margin.bottom, margin.top]);
+  var yAxis = d3.axisRight().scale(yScale).ticks(3);
+  var yAxis2 = d3.axisLeft().scale(yScale).ticks(3);
+  var xAxis = d3.axisBottom().scale(xScale);
+
+  if (svg.select(".yAxis").node() === null) {
     svg.append("g").attr("class", "xAxis");
+    svg.append("g").attr("class", "yAxis");
+    svg.append("g").attr("class", "yAxis2");
   }
 
   useEffect(() => {
@@ -48,11 +53,22 @@ var CountEmotionsGraph2 = ({ data }) => {
   useEffect(() => {
     const t = d3.transition().duration(1000);
 
-    let xMax = d3.max(counts, (d) => d.count);
-    xScale.domain([0, xMax + 2])
+    let yMax = d3.max(counts, (d) => d.count);
+    yScale.domain([0, yMax + 1]).nice();
 
-    let yDomain = counts.map((d) => d.key);
-    yScale.domain(yDomain);
+    svg
+      .select(".yAxis")
+      .attr("transform", `translate(${width - margin.right}, 0)`)
+      .transition(t)
+      .call(yAxis);
+    svg
+      .select(".yAxis2")
+      .attr("transform", `translate(${margin.left}, 0)`)
+      .transition(t)
+      .call(yAxis2);
+
+    let xDomain = counts.map((d) => d.key);
+    xScale.domain(xDomain);
 
     svg
       .select(".xAxis")
@@ -71,27 +87,32 @@ var CountEmotionsGraph2 = ({ data }) => {
         if (d.key === "neutral") return "😐";
         if (d.key === "frowning") return "☹️";
       })
-      .attr("x", (d) => xScale(d.count) - fontSize * 0.6);
+      .attr("y", (d) => yScale(d.count) + 0.5 * fontSize);
 
     enter
       .merge(text)
       .transition(t)
-      .attr("x", (d) => xScale(d.count) - fontSize * 0.6)
-      .attr("y", (d) => yScale(d.key))
+      .attr("x", (d) => xScale(d.key) - 20)
+      .attr("y", (d) => yScale(d.count) + 0.5 * fontSize)
       .attr("font-size", `${fontSize}px`);
 
     svg.selectAll(".xAxis text")
       .attr("font-weight", "bold")
-      .attr("font-size", "18px");
-    
+      .attr("font-size", "15px");
+    svg.selectAll(".yAxis text")
+      .attr("font-weight", "bold")
+      .attr("font-size", "15px");
+    svg.selectAll(".yAxis2 text")
+      .attr("font-weight", "bold")
+      .attr("font-size", "15px");
   }, [counts]);
 
   return (
     <svg
-      id="graphCount2"
+      id="graphCount"
       style={{ width: `${width}px`, height: `${height}px` }}
     ></svg>
   );
 };
 
-export default CountEmotionsGraph2;
+export default CountEmotionsGraph;
