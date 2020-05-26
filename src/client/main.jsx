@@ -8,13 +8,13 @@ let Main = ({ user, page, setPage }) => {
   if (page === "New") {
     displayed = <NewPage setPage={setPage} user={user} />;
   } else if (page === "Audoos") {
-    displayed = <List page={page} />;
+    displayed = <List page={page} user={user}/>;
   } else if (page === "Shared") {
-    displayed = <List page={page} />;
+    displayed = <List page={page} user={user}/>;
   } else if (page === "Feed") {
-    displayed = <List page={page} />;
+    displayed = <List page={page} user={user}/>;
   } else if (page === "Stats") {
-    displayed = <StatsPage page={page} />;
+    displayed = <StatsPage page={page} user={user}/>;
   }
   return <div class="overflow-y-scroll h-screen w-full">{displayed}</div>;
 };

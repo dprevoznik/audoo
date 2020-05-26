@@ -54,7 +54,7 @@ router.post("/memory", (req, res) => {
   Audoos.createAsync(req.body)
     .then((result) => {
       console.log("Created new memory: ", result);
-      res.send(201);
+      res.sendStatus(201);
       if (req.body.shared) {
         let involved = req.body.sharedWithUsers;
         trySavingInvolved(involved, req.body);

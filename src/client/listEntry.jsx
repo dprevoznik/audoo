@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import fetchAudoos from "./fetchAudoos.js";
 
-let ListEntry = ({ audoo, page, setAudoos }) => {
+let ListEntry = ({ audoo, page, setAudoos, user }) => {
   const handleDeletion = () => {
     axios
       .put(`/service/delete/${audoo._id}`)
-      .then(() => fetchAudoos(page, setAudoos))
+      .then(() => fetchAudoos(page, setAudoos, user))
       .catch((err) => console.log("Err deleting post: ", err));
   };
 
@@ -33,7 +33,6 @@ let ListEntry = ({ audoo, page, setAudoos }) => {
   const onPublicToggle = () => {
     axios
       .put(`/service/public/${audoo._id}/${!truthy}`)
-      // .then(() => fetchAudoos(page, setAudoos)) <-- I will always be on Audoo page. I do not need to update my list now.
       .catch((err) => console.log("Error updating public status: ", err));
     setTruthy(!truthy);
   };

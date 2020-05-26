@@ -3,13 +3,12 @@ import ListEntry from "./listEntry.jsx";
 import "./scroller.css";
 import fetchAudoos from "./fetchAudoos.js";
 
-let List = ({ page }) => {
-  // use state to get data
+let List = ({ page, user }) => {
   let [audoos, setAudoos] = useState([]);
-  // use effect and fetch the data needed for this area
+
   useEffect(() => {
-    fetchAudoos(page, setAudoos);
-  }, [page]);
+    fetchAudoos(page, setAudoos, user);
+  }, [page, user]);
 
   let columnA = [];
   let columnB = [];
@@ -17,11 +16,11 @@ let List = ({ page }) => {
   audoos.forEach((audoo, idx) => {
     if (idx % 2 === 0) {
       columnA.push(
-        <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} />
+        <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} user={user}/>
       );
     } else {
       columnB.push(
-        <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} />
+        <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} user={user}/>
       );
     }
   });

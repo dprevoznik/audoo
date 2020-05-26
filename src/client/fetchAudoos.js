@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const fetchAudoos = (page, setAudoos) => {
-  let nickname = localStorage.getItem("id");
+const fetchAudoos = (page, setAudoos, nickname = localStorage.getItem("id")) => {
   if (page === "Audoos") {
     axios
       .get(`/service/audoos/${nickname}`)

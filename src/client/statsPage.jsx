@@ -3,7 +3,7 @@ import fetchAudoos from "./fetchAudoos.js";
 import CountEmotionsGraph from "./countEmotionGraph.jsx";
 import EmotionTimeGraph from "./emotionTimeGraph.jsx";
 
-var StatsPage = ({ page }) => {
+var StatsPage = ({ user }) => {
   var [data, setData] = useState([]);
   var [selected, setSelected] = useState("Audoos");
 
@@ -12,8 +12,8 @@ var StatsPage = ({ page }) => {
   };
 
   useEffect(() => {
-    fetchAudoos(selected, setData);
-  }, [selected]);
+    fetchAudoos(selected, setData, user);
+  }, [selected, user]);
 
   return (
     <div className="flex flex-col items-center">

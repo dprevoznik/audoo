@@ -26,20 +26,35 @@ let NicknameForm = (props) => {
         .catch((err) => console.log("err: ", err));
     }
   };
+  let handleDemoSubmit = (e) => {
+    e.preventDefault();
+    setNickname("Dan222");
+  };
   return (
     <div class="m-24">
       <h1 class="text-6xl uppercase">Choose A Nickname</h1>
-      <input
-        onChange={handleChange}
-        value={choice}
-        class="border-gray-800 border-solid border-4"
-      ></input>
-      <button
-        onClick={handleSubmit}
-        class="ml-6 border-gray-800 border-solid border-4"
-      >
-        <p class="m-2">Choose</p>
-      </button>
+      <div class="w-1/6 flex flex-col">
+        <input
+          onChange={handleChange}
+          value={choice}
+          class="border-gray-800 border-solid border-4 focus:outline-none text-center"
+        ></input>
+        {choice.length >= 6 ? 
+        <button
+          onClick={handleSubmit}
+          class="border-gray-800 border-solid border-4 mb-2 border-t-0 bg-blue-600 hover:font-bold uppercase"
+        >
+          <p class="m-2">Choose</p>
+        </button>
+        : 
+        null}
+        <button
+          onClick={handleDemoSubmit}
+          class="border-gray-800 border-solid border-4 mt-16 w-32 hover:font-bold"
+        >
+          <p class="m-1 uppercase">Demo</p>
+        </button>
+      </div>
     </div>
   );
 };
