@@ -61,12 +61,3 @@ var StatsPage = ({ user }) => {
 };
 
 export default StatsPage;
-
-/*
-<select onChange={updateSelected} className="w-1/3 focus:outline-none">
-        {["Audoos", "Shared", "Feed"].map(function createDataOptions(item, idx) {
-          return <option key={idx} value={item} className="text-center">{item}</option>
-        })}
-      </select>
-
-*/
