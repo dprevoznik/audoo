@@ -5,7 +5,7 @@ var EmotionTimeGraph = ({ data }) => {
   var [counts, setCounts] = useState([]);
 
   const width = 700;
-  const height = 300;
+  const height = 275;
   const margin = { top: 50, bottom: 25, left: 35, right: 35 };
   const rectWidth = 20;
   const svg = d3.select("#graphTime");

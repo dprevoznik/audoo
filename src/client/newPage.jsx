@@ -49,7 +49,7 @@ let NewPage = ({ setPage, user }) => {
                   onClick={() => {
                     setChosen(item);
                   }}
-                  class={`flex flex-row hover:bg-gray-200 hover:font-semibold border-solid border-r-2 border-l-2 border-gray-600 p-2 w-full text-m ${
+                  class={`flex flex-row hover:bg-gray-500 hover:font-semibold border-solid border-r-2 border-l-2 border-gray-600 bg-white p-2 w-full text-m ${
                     idx === 0 ? "mt-2 rounded-t border-t-2" : ""
                   } ${
                     idx === searchResults.length - 1

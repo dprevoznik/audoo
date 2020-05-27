@@ -31,30 +31,36 @@ let NicknameForm = (props) => {
     setNickname("Dan222");
   };
   return (
-    <div class="m-24">
-      <h1 class="text-6xl uppercase">Choose A Nickname</h1>
-      <div class="w-1/6 flex flex-col">
+    <div class="flex flex-col text-center items-center bg-gray-500 h-screen pt-16">
+      <div class="flex flex-col relative mb-4">
         <input
           onChange={handleChange}
           value={choice}
-          class="border-gray-800 border-solid border-4 focus:outline-none text-center"
+          placeholder="Choose A Nickname"
+          class="border-gray-800 border-solid border-2 rounded w-64 mt-2 focus:outline-none text-center"
         ></input>
-        {choice.length >= 6 ? 
-        <button
-          onClick={handleSubmit}
-          class="border-gray-800 border-solid border-4 mb-2 border-t-0 bg-blue-600 hover:font-bold uppercase"
-        >
-          <p class="m-2">Choose</p>
-        </button>
-        : 
-        null}
-        <button
-          onClick={handleDemoSubmit}
-          class="border-gray-800 border-solid border-4 mt-16 w-32 hover:font-bold"
-        >
-          <p class="m-1 uppercase">Demo</p>
-        </button>
+        {choice.length >= 6 ? (
+          <button
+            onClick={handleSubmit}
+            class="border-gray-800 border-solid border-2 w-64 border-t-1 bg-blue-600 hover:font-bold uppercase absolute transform translate-y-8 rounded-b"
+          >
+            <p class="m-2">Choose</p>
+          </button>
+        ) : null}
       </div>
+      {["A", "U", "D", "O", "O"].map(function displayLogo(letter, idx) {
+        return (
+          <span key={idx} class="text-6xl uppercase hover:text-orange-600">
+            {letter}
+          </span>
+        );
+      })}
+      <button
+        onClick={handleDemoSubmit}
+        class="border-gray-800 bg-gray-800 border-solid border-4 rounded w-24 mt-4 transform hover:font-bold hover:scale-125 text-white"
+      >
+        <p class="m-1 uppercase">Demo</p>
+      </button>
     </div>
   );
 };

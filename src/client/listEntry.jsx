@@ -60,12 +60,14 @@ let ListEntry = ({ audoo, page, setAudoos, user }) => {
                   : null}
               </span>
             </div>
-            <button
-              onClick={handleDeletion}
-              class="inline-block align-middle mr-2 focus:outline-none"
-            >
-              <i class="fas fa-times-circle fa-xs text-red-600 hover:text-red-500"></i>
-            </button>
+            {page !== "Feed" ? (
+              <button
+                onClick={handleDeletion}
+                class="inline-block align-middle mr-2 focus:outline-none"
+              >
+                <i class="fas fa-times-circle fa-xs text-red-600 hover:text-red-700 transform hover:scale-125"></i>
+              </button>
+            ) : null}
           </div>
           <div class="">
             <iframe
@@ -91,7 +93,9 @@ let ListEntry = ({ audoo, page, setAudoos, user }) => {
               {page === "Audoos" && innerHover === true ? (
                 <button
                   class={`text-xs p-1 focus:outline-none border-gray-600 border-t transition ease-in-out duration-1000 ${
-                    truthy === true ? "bg-blue-600 hover:font-bold" : "bg-gray-300 hover:font-bold"
+                    truthy === true
+                      ? "bg-blue-600 hover:font-bold"
+                      : "bg-gray-300 hover:font-bold"
                   }`}
                   onClick={onPublicToggle}
                 >
