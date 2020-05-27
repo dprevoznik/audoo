@@ -4,6 +4,9 @@ Have you ever heard a song that instantly brought you back to some distant memor
 ### Scrollable Feed
 ![demo-UX](http://g.recordit.co/uGGul6ptrH.gif)
 
+### Create Audoos
+![demo-create](http://g.recordit.co/CI9CbHcBfa.gif)
+
 ### Statistics Page
 ![demo-stats](http://g.recordit.co/fihQrFLOFb.gif)
 
