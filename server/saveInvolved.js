@@ -1,4 +1,4 @@
-const { Audoos, Nickname } = require("./db.js");
+const { Audoos, Nickname } = require("./db/db.js");
 const Promise = require("bluebird");
 
 let trySavingInvolved = (friends, originalObj) => {

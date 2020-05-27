@@ -96,13 +96,13 @@ var CountEmotionsGraph = ({ data }) => {
       .attr("y", (d) => yScale(d.count) + 0.5 * fontSize)
       .attr("font-size", `${fontSize}px`);
 
-    d3.selectAll(".xAxis text")
+    svg.selectAll(".xAxis text")
       .attr("font-weight", "bold")
       .attr("font-size", "15px");
-    d3.selectAll(".yAxis text")
+    svg.selectAll(".yAxis text")
       .attr("font-weight", "bold")
       .attr("font-size", "15px");
-    d3.selectAll(".yAxis2 text")
+    svg.selectAll(".yAxis2 text")
       .attr("font-weight", "bold")
       .attr("font-size", "15px");
   }, [counts]);
