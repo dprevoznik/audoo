@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NicknameForm from "./nicknameForm";
+import NicknameForm from "../login/nicknameForm";
 import Navbar from "./navbar";
 import Main from "./main";
 
@@ -12,7 +12,7 @@ function App() {
       {nickname === null ? (
         <NicknameForm setNickname={setNickname} />
       ) : (
-        <div class="flex flex-row">
+        <div className="flex flex-row">
           <Navbar page={page} setPage={setPage} />
           <Main user={nickname} page={page} setPage={setPage}/>
         </div>

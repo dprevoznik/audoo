@@ -1,5 +1,5 @@
 const express = require("express");
-const { Audoos, Nickname } = require("./db.js");
+const { Audoos, Nickname } = require("./db/db.js");
 const trySavingInvolved = require("./saveInvolved.js");
 const router = express.Router();
 
