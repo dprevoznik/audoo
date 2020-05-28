@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Axios from "axios";
-let NicknameForm = (props) => {
-  let { setNickname } = props;
-  let [choice, setChoice] = useState("");
 
-  let handleChange = (e) => {
+function NicknameForm(props) {
+  var { setNickname } = props;
+  var [choice, setChoice] = useState("");
+
+  function handleChange(e) {
     setChoice(e.target.value);
   };
 
-  let handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     // make sure username is over 6 letters && not equal to "name is taken"
     if (choice.length > 5 && choice !== "Name Taken") {
@@ -26,10 +27,12 @@ let NicknameForm = (props) => {
         .catch((err) => console.log("err: ", err));
     }
   };
-  let handleDemoSubmit = (e) => {
+
+  function handleDemoSubmit(e) {
     e.preventDefault();
     setNickname("Dan222");
   };
+
   return (
     <div className="flex flex-col text-center items-center bg-gray-500 h-screen pt-16">
       <div className="flex flex-col relative mb-4">
@@ -48,7 +51,7 @@ let NicknameForm = (props) => {
           </button>
         ) : null}
       </div>
-      {["A", "U", "D", "O", "O"].map(function displayLogo(letter, idx) {
+      {["A", "U", "D", "O", "O"].map(function displayLogoLetter(letter, idx) {
         return (
           <span key={idx} className="text-6xl uppercase hover:text-orange-600">
             {letter}

@@ -1,6 +1,6 @@
 import React from "react";
 
-let allEmoji = [
+var allEmoji = [
   [
     "smiley",
     <span className="text-xl" role="img" aria-label="smiley">

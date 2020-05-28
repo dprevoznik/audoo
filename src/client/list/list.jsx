@@ -3,17 +3,16 @@ import ListEntry from "./listEntry.jsx";
 import "../helpers/scroller.css";
 import fetchAudoos from "../helpers/fetchAudoos.js";
 
-let List = ({ page, user }) => {
-  let [audoos, setAudoos] = useState([]);
+function List({ page, user }) {
+  var [audoos, setAudoos] = useState([]);
+  var columnA = [];
+  var columnB = [];
 
   useEffect(() => {
     fetchAudoos(page, setAudoos, user);
-  }, [page, user]);
+  }, [page, user]);  
 
-  let columnA = [];
-  let columnB = [];
-
-  audoos.forEach((audoo, idx) => {
+  audoos.forEach(function decideColumnPlacement(audoo, idx) {
     if (idx % 2 === 0) {
       columnA.push(
         <ListEntry audoo={audoo} page={page} setAudoos={setAudoos} user={user}/>
@@ -29,7 +28,7 @@ let List = ({ page, user }) => {
     <div>
       <div className="flex flex-col items-center w-full">
         {audoos.length > 0
-          ? columnA.map((memory, idx) => {
+          ? columnA.map(function createRow(memory, idx) {
               return (
                 <div key={idx} className="flex flex-row w-3/4">
                   {memory}
