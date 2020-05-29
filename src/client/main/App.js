@@ -7,6 +7,7 @@ function App() {
   var localName = localStorage.getItem("id");
   var [nickname, setNickname] = useState(localName);
   var [page, setPage] = useState("New");
+  
   return (
     <div>
       {nickname === null ? (

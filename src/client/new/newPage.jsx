@@ -3,33 +3,37 @@ import axios from "axios";
 import API_KEY from "../../api.config";
 import MemoryForm from "./memoryForm";
 
-let NewPage = ({ setPage, user }) => {
+function NewPage({ setPage, user }) {
   // state for URL choice
-  let [chosen, setChosen] = useState(null);
-  let [searchTerm, setSearchTerm] = useState("");
-  let [searchResults, setSearchResults] = useState([]);
+  var [chosen, setChosen] = useState(null);
+  var [searchTerm, setSearchTerm] = useState("");
+  var [searchResults, setSearchResults] = useState([]);
 
-  let handleSearchTermChange = (e) => {
+  function handleSearchTermChange(e) {
     setSearchTerm(e.target.value);
-  };
+  }
 
-  useEffect(() => {
-    if (searchTerm.length >= 3) {
-      axios
-        .get(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&q=${searchTerm
-            .split(" ")
-            .join("+")}&videoEmbeddable=true&key=${API_KEY}`
-        )
-        .then(({ data }) => {
-          let { items } = data;
-          setSearchResults(items);
-        })
-        .catch((err) => {
-          console.log("err: ", err);
-        });
-    }
-  }, [searchTerm]);
+  useEffect(
+    function queryYoutube() {
+      if (searchTerm.length >= 3) {
+        axios
+          .get(
+            `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&q=${searchTerm
+              .split(" ")
+              .join("+")}&videoEmbeddable=true&key=${API_KEY}`
+          )
+          .then(({ data }) => {
+            let { items } = data;
+            setSearchResults(items);
+          })
+          .catch((err) => {
+            console.log("err: ", err);
+          });
+      }
+    },
+    [searchTerm]
+  );
+
   return (
     <div className="flex flex-col items-center text-center w-full h-screen justify-center">
       <div className="w-1/2 border-gray-600 border-2 rounded">
@@ -43,7 +47,7 @@ let NewPage = ({ setPage, user }) => {
       </div>
       <div className="w-1/2 shadow-2xl">
         {searchResults.length > 0 && chosen === null
-          ? searchResults.map((item, idx) => {
+          ? searchResults.map(function displayResult(item, idx) {
               return (
                 <div
                   key={idx}
@@ -79,7 +83,6 @@ let NewPage = ({ setPage, user }) => {
       ) : null}
     </div>
   );
-};
-// FORM after URL is chosen
+}
 
 export default NewPage;
