@@ -53,7 +53,7 @@ function NicknameForm(props) {
       </div>
       {["A", "U", "D", "O", "O"].map(function displayLogoLetter(letter, idx) {
         return (
-          <span key={idx} className="text-6xl uppercase hover:text-orange-600">
+          <span key={idx} className="text-6xl text-gray-800 uppercase hover:text-orange-600">
             {letter}
           </span>
         );
