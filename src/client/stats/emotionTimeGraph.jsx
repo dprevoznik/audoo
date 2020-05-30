@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 
-var EmotionTimeGraph = ({ data }) => {
+function EmotionTimeGraph({ data }) {
   var [counts, setCounts] = useState([]);
 
   const width = 700;
   const height = 275;
   const margin = { top: 50, bottom: 25, left: 35, right: 35 };
   const rectWidth = 20;
-  const svg = d3.select("#graphTime");
+  
+  var svg = d3.select("#graphTime");
   svg.attr("transform", `translate(25, 25)`);
   var xScale = d3
     .scalePoint()
@@ -19,6 +20,7 @@ var EmotionTimeGraph = ({ data }) => {
   var yAxis2 = d3.axisLeft().scale(yScale).ticks(3);
   var xAxis = d3.axisBottom().scale(xScale);
   var heightScale = d3.scaleLinear().range([0, height - margin.top - margin.bottom]);
+  
   if (svg.select(".yAxis").node() === null) {
     svg.append("g").attr("class", "xAxis");
     svg.append("g").attr("class", "yAxis");
@@ -47,7 +49,7 @@ var EmotionTimeGraph = ({ data }) => {
       .text("By Year");
   }
 
-  useEffect(() => {
+  useEffect(function countYears() {
     if (data.length > 0) {
       let output = {};
       for (let memory of data) {
@@ -63,8 +65,8 @@ var EmotionTimeGraph = ({ data }) => {
         outputArray.push({ key, count: output[key] });
       }
       outputArray.sort((a, b) => {
-        let num1 = parseInt(a);
-        let num2 = parseInt(b);
+        var num1 = parseInt(a);
+        var num2 = parseInt(b);
         return num1 < num2 ? -1 : 1;
       });
       // Don't show none dated data
@@ -75,10 +77,10 @@ var EmotionTimeGraph = ({ data }) => {
     }
   }, [data]);
 
-  useEffect(() => {
-    const t = d3.transition().duration(1000);
+  useEffect(function updateYears() {
+    var t = d3.transition().duration(1000);
 
-    let yMax = d3.max(counts, (d) => d.count);
+    var yMax = d3.max(counts, (d) => d.count);
     yScale.domain([0, yMax + 1]).nice();
     heightScale.domain([0, yMax + 1]).nice();
 
@@ -101,13 +103,13 @@ var EmotionTimeGraph = ({ data }) => {
       .transition(t)
       .call(xAxis);
 
-    let rect = svg.selectAll("rect").data(counts, (d) => d.key);
+    var rect = svg.selectAll("rect").data(counts, (d) => d.key);
     rect.exit()
     .transition(t)
     .attr('y', height - margin.bottom)
     .attr('height', 0)
     .remove();
-    let enter = rect.enter()
+    var enter = rect.enter()
       .append("rect")
       .attr('x', (d) => xScale(d.key))
       .attr('y', d => yScale(d.count))

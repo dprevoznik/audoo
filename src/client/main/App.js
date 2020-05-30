@@ -4,9 +4,10 @@ import Navbar from "./navbar";
 import Main from "./main";
 
 function App() {
-  let localName = localStorage.getItem("id");
-  let [nickname, setNickname] = useState(localName);
-  let [page, setPage] = useState("New");
+  var localName = localStorage.getItem("id");
+  var [nickname, setNickname] = useState(localName);
+  var [page, setPage] = useState("New");
+  
   return (
     <div>
       {nickname === null ? (

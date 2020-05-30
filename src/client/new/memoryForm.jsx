@@ -2,23 +2,23 @@ import React, { useState } from "react";
 import axios from "axios";
 import allEmoji from "../helpers/allEmoji";
 
-let MemoryForm = ({ chosen, setPage }) => {
-  let [memory, setMemory] = useState("");
-  let [date, setDate] = useState("");
-  let [involved, setInvolved] = useState("");
-  let [feeling, setFeeling] = useState(null);
+function MemoryForm ({ chosen, setPage }) {
+  var [memory, setMemory] = useState("");
+  var [date, setDate] = useState("");
+  var [involved, setInvolved] = useState("");
+  var [feeling, setFeeling] = useState(null);
 
-  let handleSubmit = () => {
+  function handleSubmit() {
     // get memory, date, and involved, and any chosen data you need
-    let localUser = localStorage.getItem("id");
-    let userName = localUser === null ? "Dan222" : localUser;
-    let sharedWithUsers = involved !== "" ? involved.split(",") : "";
-    let url = chosen.id.videoId;
-    let sharedBy = userName;
-    let shared = sharedWithUsers === "" ? false : true;
-    let emoji = feeling === null ? "neutral" : feeling;
-    let truthy = false;
-    let created = new Date();
+    var localUser = localStorage.getItem("id");
+    var userName = localUser === null ? "Dan222" : localUser;
+    var sharedWithUsers = involved !== "" ? involved.split(",") : "";
+    var url = chosen.id.videoId;
+    var sharedBy = userName;
+    var shared = sharedWithUsers === "" ? false : true;
+    var emoji = feeling === null ? "neutral" : feeling;
+    var truthy = false;
+    var created = new Date();
     // make axios request to post that data into Audoos collection
     axios
       .post("/service/memory", {

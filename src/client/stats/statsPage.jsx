@@ -3,18 +3,21 @@ import fetchAudoos from "../helpers/fetchAudoos.js";
 import CountEmotionsGraph from "./countEmotionGraph.jsx";
 import EmotionTimeGraph from "./emotionTimeGraph.jsx";
 
-var StatsPage = ({ user }) => {
+function StatsPage({ user }) {
   var [data, setData] = useState([]);
   var [selected, setSelected] = useState("Audoos");
   var [dropdown, setDropdown] = useState(false);
 
-  const updateSelected = (item) => {
+  function updateSelected(item) {
     setSelected(item);
-  };
+  }
 
-  useEffect(() => {
-    fetchAudoos(selected, setData, user);
-  }, [selected, user]);
+  useEffect(
+    function retrieveData() {
+      fetchAudoos(selected, setData, user);
+    },
+    [selected, user]
+  );
 
   return (
     <div className="flex flex-col items-center mt-2">
@@ -23,7 +26,7 @@ var StatsPage = ({ user }) => {
           onClick={function toggleDropDown() {
             setDropdown(!dropdown);
           }}
-          className="block h-8 w-8 rounded-full overflow-hidden border-2 border-gray-600 hover:bg-gray-600 focus:outline-none focus:border-gray-700 transform hover:scale-110"
+          className="block h-8 w-8 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-gray-700 transition duration-500 transform hover:scale-110 hover:bg-gray-600"
         >
           <i className="fas fa-database"></i>
         </button>
@@ -58,6 +61,6 @@ var StatsPage = ({ user }) => {
       </div>
     </div>
   );
-};
+}
 
 export default StatsPage;

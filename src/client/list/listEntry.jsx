@@ -2,35 +2,29 @@ import React, { useState } from "react";
 import axios from "axios";
 import fetchAudoos from "../helpers/fetchAudoos.js";
 
-let ListEntry = ({ audoo, page, setAudoos, user }) => {
-  const handleDeletion = () => {
+function ListEntry({ audoo, page, setAudoos, user }) {
+  var [hover, setHover] = useState(false);
+  var [innerHover, setInnerHover] = useState(false);
+  var [truthy, setTruthy] = useState(audoo.public);
+
+  function handleDeletion() {
     axios
       .put(`/service/delete/${audoo._id}`)
       .then(() => fetchAudoos(page, setAudoos, user))
       .catch((err) => console.log("Err deleting post: ", err));
-  };
+  }
 
-  const decideMoodColor = (emotion) => {
-    if (emotion === "") return "";
-    if (emotion === "smiley") return "bg-green-200";
-    if (emotion === "neutral") return "";
-    if (emotion === "frowning") return "bg-red-200";
-  };
-
-  let [hover, setHover] = useState(false);
-  let [innerHover, setInnerHover] = useState(false);
-  const onHoverToggle = (e) => {
+  function onHoverToggle(e) {
     e.preventDefault();
     setHover(!hover);
-  };
+  }
 
-  const onInnerHoverToggle = (e) => {
+  function onInnerHoverToggle(e) {
     e.preventDefault();
     setInnerHover(!innerHover);
   };
 
-  let [truthy, setTruthy] = useState(audoo.public);
-  const onPublicToggle = () => {
+  function onPublicToggle() {
     axios
       .put(`/service/public/${audoo._id}/${!truthy}`)
       .catch((err) => console.log("Error updating public status: ", err));
@@ -65,7 +59,7 @@ let ListEntry = ({ audoo, page, setAudoos, user }) => {
                 onClick={handleDeletion}
                 className="inline-block align-middle mr-2 focus:outline-none"
               >
-                <i className="fas fa-times-circle fa-xs text-red-600 hover:text-red-700 transform hover:scale-125"></i>
+                <i className="fas fa-times-circle fa-xs text-red-600 transition duration-500 hover:text-red-700 transform hover:scale-125"></i>
               </button>
             ) : null}
           </div>
@@ -108,5 +102,12 @@ let ListEntry = ({ audoo, page, setAudoos, user }) => {
     </div>
   );
 };
+
+function decideMoodColor(emotion) {
+  if (emotion === "") return "";
+  if (emotion === "smiley") return "bg-green-200";
+  if (emotion === "neutral") return "";
+  if (emotion === "frowning") return "bg-red-200";
+}
 
 export default ListEntry;
