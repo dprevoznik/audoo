@@ -15,7 +15,7 @@ function Navbar({ page, setPage }) {
           <i class="fas fa-bars text-4xl text-gray-800 hover:text-orange-500 transform transition duration-200 hover:scale-110"></i>
         </button>
       </div>
-      <div className="h-screen border-gray-600 border-solid border-r-2 flex flex-col items-center justify-center px-8 bg-gray-500">
+      <div className={`h-screen border-gray-600 border-solid border-r-2 flex flex-col items-center justify-center px-8 bg-gray-500`}>
         {showNavbar
           ? options.map(function createNavbarOption(item, idx) {
               return (

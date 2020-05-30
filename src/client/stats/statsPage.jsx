@@ -26,7 +26,7 @@ function StatsPage({ user }) {
           onClick={function toggleDropDown() {
             setDropdown(!dropdown);
           }}
-          className="block h-8 w-8 rounded-full overflow-hidden border-2 border-gray-600 hover:bg-gray-600 focus:outline-none focus:border-gray-700 transform hover:scale-110"
+          className="block h-8 w-8 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-gray-700 transition duration-500 transform hover:scale-110 hover:bg-gray-600"
         >
           <i className="fas fa-database"></i>
         </button>

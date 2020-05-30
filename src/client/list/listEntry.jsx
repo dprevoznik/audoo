@@ -59,7 +59,7 @@ function ListEntry({ audoo, page, setAudoos, user }) {
                 onClick={handleDeletion}
                 className="inline-block align-middle mr-2 focus:outline-none"
               >
-                <i className="fas fa-times-circle fa-xs text-red-600 hover:text-red-700 transform hover:scale-125"></i>
+                <i className="fas fa-times-circle fa-xs text-red-600 transition duration-500 hover:text-red-700 transform hover:scale-125"></i>
               </button>
             ) : null}
           </div>
