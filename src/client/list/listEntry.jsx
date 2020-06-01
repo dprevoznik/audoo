@@ -22,18 +22,18 @@ function ListEntry({ audoo, page, setAudoos, user }) {
   function onInnerHoverToggle(e) {
     e.preventDefault();
     setInnerHover(!innerHover);
-  };
+  }
 
   function onPublicToggle() {
     axios
       .put(`/service/public/${audoo._id}/${!truthy}`)
       .catch((err) => console.log("Error updating public status: ", err));
     setTruthy(!truthy);
-  };
+  }
 
   return (
     <div
-      className="my-6 mx-10 w-1/2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+      className="my-6 mx-10 w-1/4 transition duration-700 ease-in-out transform hover:-translate-y-1 hover:scale-110"
       onMouseEnter={onHoverToggle}
       onMouseLeave={onHoverToggle}
     >
@@ -41,32 +41,34 @@ function ListEntry({ audoo, page, setAudoos, user }) {
         <div
           className={`text-lg text-gray-900 flex flex-col text-left w-full rounded-lg overflow-y-auto border-2 border-gray-600`}
         >
-          <div
-            className={`flex justify-between border-gray-600 border-b-2  ${
-              page === "Audoos" ? decideMoodColor(audoo.emoji) : ""
-            }`}
-          >
-            <div>
-              <span className="font-bold ml-4">{audoo.date}</span>
-              <span className="font-bold text-gray-900">
-                {page === "Shared" || page === "Feed"
-                  ? ` | ${audoo.sharedBy}`
-                  : null}
-              </span>
+          {hover || page === "Feed" ? (
+            <div
+              className={`flex justify-between border-gray-600 border-b-2  ${
+                page === "Audoos" ? decideMoodColor(audoo.emoji) : ""
+              }`}
+            >
+              <div>
+                <span className="font-bold ml-4">{audoo.date}</span>
+                <span className="font-bold text-gray-900">
+                  {page === "Shared" || page === "Feed"
+                    ? ` | ${audoo.sharedBy}`
+                    : null}
+                </span>
+              </div>
+              {page !== "Feed" ? (
+                <button
+                  onClick={handleDeletion}
+                  className="inline-block align-middle mr-2 focus:outline-none"
+                >
+                  <i className="fas fa-times-circle fa-xs text-red-600 transition duration-500 hover:text-red-700 transform hover:scale-125"></i>
+                </button>
+              ) : null}
             </div>
-            {page !== "Feed" ? (
-              <button
-                onClick={handleDeletion}
-                className="inline-block align-middle mr-2 focus:outline-none"
-              >
-                <i className="fas fa-times-circle fa-xs text-red-600 transition duration-500 hover:text-red-700 transform hover:scale-125"></i>
-              </button>
-            ) : null}
-          </div>
+          ) : null}
           <div className="">
             <iframe
-              className=""
-              style={{ position: "relative", height: "100%", width: "100%" }}
+              className="h-40"
+              style={{ position: "relative", height: "30vh", width: "100%" }}
               title={audoo.memory + audoo.date}
               src={`https://www.youtube.com/embed/${audoo.url}`}
               frameBorder="0"
@@ -101,7 +103,7 @@ function ListEntry({ audoo, page, setAudoos, user }) {
       </div>
     </div>
   );
-};
+}
 
 function decideMoodColor(emotion) {
   if (emotion === "") return "";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import allEmoji from "../helpers/allEmoji";
 
-function MemoryForm ({ chosen, setPage }) {
+function MemoryForm({ chosen, setPage, setChosen }) {
   var [memory, setMemory] = useState("");
   var [date, setDate] = useState("");
   var [involved, setInvolved] = useState("");
@@ -35,12 +35,18 @@ function MemoryForm ({ chosen, setPage }) {
       })
       .then(() => setPage("Audoos"))
       .catch((err) => console.log("err posting audoo: ", err));
-  };
+  }
+
+  function showSearchResults() {
+    setChosen(null);
+  }
 
   return (
-    <div className="text-left w-1/2 shadow-2xl pr-4 pl-4 pb-4 rounded-b border-solid border-gray-600 border-2 mt-2">
+    <div className="text-left w-1/2 shadow-2xl pr-4 pl-4 pb-4 rounded-b border-solid border-gray-600 border-2 mt-2 text-gray-800">
       <h1 className="uppercase font-bold text-lg mt-2 italic">
-        {chosen.snippet.title.length > 40 ? chosen.snippet.title.slice(0, 40) + "..." : chosen.snippet.title}
+        {chosen.snippet.title.length > 40
+          ? chosen.snippet.title.slice(0, 40) + "..."
+          : chosen.snippet.title}
       </h1>
       <div className="flex flex-row">
         <div className="flex flex-col w-2/5 text-lg text-left">
@@ -49,6 +55,13 @@ function MemoryForm ({ chosen, setPage }) {
             src={chosen.snippet.thumbnails.high.url}
             alt=""
           ></img>
+          <button
+            onClick={showSearchResults}
+            type="button"
+            className="h-8 w-16 text-white text-center font-serif border-2 border-solid rounded-lg border-gray-600 bg-gray-600 transform transition duration-100 hover:bg-white font-bold focus:outline-none focus:border-gray-700 hover:text-gray-800 hover:scale-110 mt-2"
+          >
+            Back
+          </button>
         </div>
         <div className="flex flex-col w-3/5 m-2 ml-6">
           <div className="flex flex-col w-full mb-2">
@@ -108,7 +121,7 @@ function MemoryForm ({ chosen, setPage }) {
               <button
                 onClick={handleSubmit}
                 type="button"
-                className="border-2 px-2 border-solid rounded-lg border-gray-600 h-8 text-center hover:bg-gray-600 font-bold font-serif focus:outline-none focus:border-gray-700 hover:text-white transform hover:scale-110"
+                className="border-2 px-2 border-solid rounded-lg border-gray-600 h-8 text-center hover:bg-gray-600 font-bold font-serif focus:outline-none focus:border-gray-700 hover:text-white transform transition duration-100 hover:scale-110"
               >
                 Record
               </button>
@@ -118,6 +131,6 @@ function MemoryForm ({ chosen, setPage }) {
       </div>
     </div>
   );
-};
+}
 
 export default MemoryForm;
