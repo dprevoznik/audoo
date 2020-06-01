@@ -35,7 +35,7 @@ function NewPage({ setPage, user }) {
   );
 
   return (
-    <div className="flex flex-col items-center text-center w-full h-screen justify-center">
+    <div className="flex flex-col items-center text-center w-full h-screen justify-center text-gray-800">
       <div className="w-1/2 border-gray-600 border-2 rounded">
         <input
           value={searchTerm}
@@ -46,7 +46,7 @@ function NewPage({ setPage, user }) {
         ></input>
       </div>
       <div className="w-1/2 shadow-2xl">
-        {searchResults.length > 0 && chosen === null
+        {searchResults.length > 0 && chosen === null && searchTerm.length >= 3
           ? searchResults.map(function displayResult(item, idx) {
               return (
                 <div
@@ -79,7 +79,7 @@ function NewPage({ setPage, user }) {
           : null}
       </div>
       {chosen !== null ? (
-        <MemoryForm setPage={setPage} chosen={chosen} />
+        <MemoryForm setPage={setPage} chosen={chosen} setChosen={setChosen}/>
       ) : null}
     </div>
   );

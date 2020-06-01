@@ -39,14 +39,14 @@ function List({ page, user }) {
 
   return (
     <div>
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full text-gray-800">
         {audoos.length > 0
           ? columnA.map(function createRow(memory, idx) {
               return (
-                <div key={idx} className="flex flex-row w-3/4">
+                <div key={idx} className="flex flex-row w-full justify-center">
                   {memory}
                   {columnB[idx] === undefined ? (
-                    <div className="my-6 mx-10 w-1/2"></div>
+                    <div className="my-6 mx-10 w-1/4"></div>
                   ) : (
                     columnB[idx]
                   )}
