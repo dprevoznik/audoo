@@ -4,17 +4,26 @@ Live at https://bit.ly/audoo-it
 ## Description
 Have you ever heard a song that instantly brought you back to some distant memory? Save that thought with Audoo! And while you're at it, tag all of your friends that were involved. That way they can cherish the memory as well.
 
-### Scrollable Feed
+
+### Scrollable Feeds
+![demo-scroll](http://g.recordit.co/0RQ5F6ukPd.gif)
+
+
+### Interactive Notes
+![demo-ux](http://g.recordit.co/a9HipTIzph.gif)
 
 
 ### Create Audoos
 ![demo-create](http://g.recordit.co/CI9CbHcBfa.gif)
 
+
 ### Statistics Page
 ![demo-stats](http://g.recordit.co/fihQrFLOFb.gif)
 
+
 ### Collapsable Navigation
 ![demo-nav](http://g.recordit.co/AKnu3VdN45.gif)
+
 
 ## Available Scripts
 
