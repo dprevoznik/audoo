@@ -1,11 +1,11 @@
-## Description
-Have you ever heard a song that instantly brought you back to some distant memory? Save that thought with Audoo! And while you're at it, tag all of your friends that were involved. That way they can cherish the memory as well.
-
 ## Link
 Live at https://bit.ly/audoo-it
 
+## Description
+Have you ever heard a song that instantly brought you back to some distant memory? Save that thought with Audoo! And while you're at it, tag all of your friends that were involved. That way they can cherish the memory as well.
+
 ### Scrollable Feed
-![demo-UX](http://g.recordit.co/R50W58B5lk.gif)
+
 
 ### Create Audoos
 ![demo-create](http://g.recordit.co/CI9CbHcBfa.gif)
