@@ -16,7 +16,7 @@ function CountEmotionsGraph({ data }) {
     .scalePoint()
     .range([margin.left, height - margin.bottom])
     .padding(0.5);
-  var xAxis = d3.axisBottom().scale(xScale).ticks(3);
+  var xAxis = d3.axisBottom().scale(xScale).ticks(4);
 
   if (svg.select(".xAxis").node() === null) {
     svg.append("g").attr("class", "xAxis");
@@ -110,7 +110,8 @@ function CountEmotionsGraph({ data }) {
       svg
         .selectAll(".xAxis text")
         .attr("font-weight", "bold")
-        .attr("font-size", "18px");
+        .attr("font-size", "18px")
+        .attr("fill", "#2d3748");
     },
     [counts]
   );

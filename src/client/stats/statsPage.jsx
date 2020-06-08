@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import fetchAudoos from "../helpers/fetchAudoos.js";
 import CountEmotionsGraph from "./countEmotionGraph.jsx";
 import EmotionTimeGraph from "./emotionTimeGraph.jsx";
+import DonutTimeGraph from "./donutTimeGraph.jsx"
 
 function StatsPage({ user }) {
   var [data, setData] = useState([]);
@@ -53,11 +54,14 @@ function StatsPage({ user }) {
           </div>
         ) : null}
       </div>
-      <div className="mb-16">
+      <div className="mb-12">
         <CountEmotionsGraph data={data} />
       </div>
       <div className="">
         <EmotionTimeGraph data={data} />
+      </div>
+      <div className="mt-16">
+        <DonutTimeGraph data={data} />
       </div>
     </div>
   );
