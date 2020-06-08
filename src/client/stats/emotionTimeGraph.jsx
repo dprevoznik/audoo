@@ -45,7 +45,6 @@ function EmotionTimeGraph({ data }) {
       .attr('fill', '#718096')  
       .style('font-size', `${titleFontSize}px`)
       .style('font-family', 'bold')
-
       .text("By Year");
   }
 
@@ -128,13 +127,16 @@ function EmotionTimeGraph({ data }) {
 
     svg.selectAll(".xAxis text")
       .attr("font-weight", "bold")
-      .attr("font-size", "18px");
+      .attr("font-size", "18px")
+      .attr("fill", "#2d3748");
     svg.selectAll(".yAxis text")
       .attr("font-weight", "bold")
-      .attr("font-size", "18px");
+      .attr("font-size", "18px")
+      .attr("fill", "#2d3748");
     svg.selectAll(".yAxis2 text")
       .attr("font-weight", "bold")
-      .attr("font-size", "18px");
+      .attr("font-size", "18px")
+      .attr("fill", "#2d3748");
   }, [counts]);
 
   return (
