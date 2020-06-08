@@ -18,7 +18,10 @@ Have you ever heard a song that instantly brought you back to some distant memor
 
 
 ### Statistics Page
-![demo-stats](http://g.recordit.co/fihQrFLOFb.gif)
+#### Graph #1: Note Count by Feeling
+![demo-count](http://g.recordit.co/DEvQ5rLoee.gif)
+#### Graph #2: Note Count by Recollection Date
+![demo-dates](http://g.recordit.co/KdIOheVoJ1.gif)
 
 
 ### Collapsable Navigation
