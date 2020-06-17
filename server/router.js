@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const { Audoos, Nickname } = require("./db/db.js");
 const trySavingInvolved = require("./saveInvolved.js");
 const router = express.Router();
@@ -29,7 +30,7 @@ router.get("/shared/:nickname", (req, res) => {
 });
 
 router.get("/feed", (req, res) => {
-  Audoos.findAsync({ public: true }, null, {sort: {created: -1}})
+  Audoos.findAsync({ public: true }, null, { sort: { created: -1 } })
     .then((audoos) => res.send(audoos))
     .catch((err) => res.send(500));
 });
@@ -50,7 +51,7 @@ router.post("/username", (req, res) => {
   });
 });
 
-router.post("/memory", (req, res) => {
+router.post("/memory", cors(), (req, res) => {
   Audoos.createAsync(req.body)
     .then((result) => {
       console.log("Created new memory: ", result);
