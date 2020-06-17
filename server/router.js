@@ -9,6 +9,8 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 
+router.options('/memory', cors()) // enable pre-flight request
+
 // **************************** //
 // ********** GET ************* //
 // **************************** //
