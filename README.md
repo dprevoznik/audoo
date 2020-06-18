@@ -1,8 +1,12 @@
-## Link
+# Audoo
+### Project Description
+Have you ever heard a song that instantly brought you back to some distant memory? Save that thought with Audoo! And while you're at it, tag all of your friends that were involved. That way they can cherish the memory as well.
+
+### Link
 Live at https://bit.ly/audoo-it
 
-## Description
-Have you ever heard a song that instantly brought you back to some distant memory? Save that thought with Audoo! And while you're at it, tag all of your friends that were involved. That way they can cherish the memory as well.
+### Chrome Extension
+Built a Chrome extension that enables Audoo note-taking directly from a Youtube video. Compliments the Audoo web application's core functionality. You can find the Github repo [here](https://github.com/dprevoznik/audoo-ext).
 
 
 ### Scrollable Feeds
