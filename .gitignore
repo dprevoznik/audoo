@@ -9,6 +9,9 @@ db.config.js
 /.pnp
 .pnp.js
 
+# CSS
+/public/tailwind.css
+
 # testing
 /coverage
 
