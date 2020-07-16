@@ -35,6 +35,10 @@ Built a Chrome extension that enables Audoo note-taking directly from any Youtub
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+First, process the CSS with Tailwind:
+
+### `npm run build:css`
+
 In the project directory, you can run:
 
 ### `npm start`
