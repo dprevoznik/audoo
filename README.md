@@ -1,5 +1,7 @@
 # [Audoo](https://bit.ly/audoo-it)
 ### Description
+The music-inspired social note-taking application.
+
 Have you ever heard a song that instantly brought you back to some distant memory? Save that thought with Audoo! And while you're at it, tag all of your friends that were involved. That way they can cherish the memory as well.
 
 ### Chrome Extension
